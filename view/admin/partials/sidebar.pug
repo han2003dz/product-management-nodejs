@@ -1,0 +1,46 @@
+.sidebar
+  .inner-menu
+    ul
+      li.mx-2
+        a(href=`${prefixAdmin}/dashboard`)
+          i(class="bi bi-house-gear-fill") 
+          span.mx-2 Tổng quan
+      li.mx-2
+        span Quản trị hệ thống
+        i(class="bi bi-chevron-down mx-2")
+        ul
+          li
+            a(href=`${prefixAdmin}/categories`)
+              i(class="bi bi-folder mx-2")
+              span Quản lý danh mục
+          li
+            a(href=`${prefixAdmin}/products`) 
+              i(class="bi bi-folder mx-2")
+              span Quản lý sản phẩm
+          li
+            a(href=`${prefixAdmin}/users`) 
+              i(class="bi bi-folder mx-2")
+              span Quản lý tài khoản
+            
+        li.mx-2 
+          span Quyền hệ thống
+          i(class="bi bi-chevron-down mx-2")
+          ul
+            li
+              a(href=`${prefixAdmin}/categories`)
+                i(class="bi bi-backpack2-fill mx-2")
+                span Phân quyền
+            li
+              a(href=`${prefixAdmin}/products`) 
+                i(class="bi bi-backpack2-fill mx-2")
+                span Nhóm quyền
+        li.mx-2
+          a(href=`${prefixAdmin}/setting`)
+            i(class="bi bi-gear-fill")
+            span.mx-2 Cài đặt chung
+        li.mx-2
+          a(href=`${prefixAdmin}/logout`)
+            i(class="bi bi-box-arrow-left")
+            span.mx-2 Log out
+        
+      

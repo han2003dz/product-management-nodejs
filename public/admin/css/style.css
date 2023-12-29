@@ -1,0 +1,57 @@
+a {
+  text-decoration: none;
+}
+h1{
+  font-size: 1.4rem;
+}
+/* Header */
+.header {
+  background-color: #edf2f9;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header .inner-logo a {
+  font-size: 24px;
+  font-weight: 700;
+  color: blue;
+  text-align: center;
+}
+/* End Header */
+
+/* Body */
+.sidebar {
+  background: #323232;
+  color: #fff;
+  height: 100vh;
+}
+/* End Body */
+
+/* sidebar */
+.sidebar .inner-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .inner-menu ul li {
+  padding: 10px 0px;
+  border-bottom: 1px solid #515151;
+}
+.sidebar .inner-menu ul li a {
+  display: block;
+  color: #fff;
+}
+.sidebar .inner-menu ul li a:hover {
+  color: blue;
+}
+/* End sidebar */
+
+.img-products {
+  object-fit: cover;
+}
+.main {
+  background: #fff;
+}

@@ -1,3 +1,5 @@
 module.exports.dashboard = (req, res) => {
-  res.send("Trang dashboard");
+  res.render("admin/pages/dashboard/index.pug", {
+    pageTitle: "Dashboard",
+  });
 };

@@ -1,3 +1,5 @@
 module.exports.index = (req, res) => {
-  res.send("Trang danh sach san pham");
+  res.render("admin/pages/products/index.pug", {
+    pageTitle: "Danh sách sản phẩm",
+  });
 };
