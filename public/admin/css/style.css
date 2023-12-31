@@ -10,6 +10,7 @@ h1{
   padding: 10px 0;
   position: sticky;
   top: 0;
+  width: 100%;
   z-index: 999;
 }
 
@@ -25,7 +26,9 @@ h1{
 .sidebar {
   background: #323232;
   color: #fff;
-  height: 100vh;
+  min-height: 100vh;
+  position: fixed; /* Thêm thuộc tính fixed cho sidebar */
+  top: 56px; /* Đảm bảo sidebar bắt đầu từ trên cùng */
 }
 /* End Body */
 
