@@ -1,0 +1,17 @@
+mixin alert-success(time)
+  if messages.success
+    .message.info.col-4
+      .alert.alert-success.fs-6(
+        show-alert 
+        data-time=time
+      ) #{messages.success}
+        i(close-alert class="bi bi-x-circle mx-2")
+
+mixin alert-error(time)
+  if messages.error
+    .message.info.col-4
+      .alert.alert-danger.fs-6(
+        show-alert 
+        data-time=time
+      ) #{messages.error} 
+        i(close-alert class="bi bi-x-circle mx-2")

@@ -1,6 +1,5 @@
-// button status
+// buttonFilterStatus
 const buttonFilterStatus = document.querySelectorAll("[button-status]");
-console.log(buttonFilterStatus);
 if (buttonFilterStatus.length > 0) {
   let url = new URL(window.location.href);
   buttonFilterStatus.forEach((button) => {
@@ -15,7 +14,7 @@ if (buttonFilterStatus.length > 0) {
     });
   });
 }
-// end button status
+// end buttonFilterStatus
 
 // Form Search
 const formSearch = document.querySelector("#form-search");
@@ -47,3 +46,44 @@ if (linkPagination) {
   });
 }
 // end pagination
+
+// Change Status
+const linkChangeStatus = document.querySelectorAll("[link-change-status]");
+if (linkChangeStatus.length > 0) {
+  // lấy form, lấy data-path
+  const formChangeStatus = document.querySelector("#form-change-status");
+  const path = formChangeStatus.getAttribute("data-path");
+
+  linkChangeStatus.forEach((item) => {
+    item.addEventListener("click", () => {
+      const statusCurrent = item.getAttribute("data-status");
+
+      const id = item.getAttribute("data-id");
+
+      let statusChanges = statusCurrent == "active" ? "inactive" : "active";
+
+      const action = path + `/${statusChanges}/${id}?_method=PATCH`;
+
+      formChangeStatus.action = action;
+
+      formChangeStatus.submit();
+    });
+  });
+}
+// End Change Status
+
+// start show-alert
+const showAlert = document.querySelector("[show-alert]");
+if (showAlert) {
+  const time = parseInt(showAlert.getAttribute("data-time"));
+  const buttonClose = document.querySelector("[close-alert]");
+  setTimeout(() => {
+    showAlert.classList.add("alert-hidden");
+  }, time);
+
+  // sự kiện click mất
+  buttonClose.addEventListener("click", () => {
+    showAlert.classList.add("alert-hidden");
+  });
+}
+// end show-alert

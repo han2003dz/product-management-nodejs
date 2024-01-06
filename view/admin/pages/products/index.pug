@@ -5,68 +5,80 @@ include ../../mixins/pagination.pug
 include ../../mixins/trash.pug
 block main
   h1 Danh sách sản phẩm
-  if(products.length > 0)
-    .card.mb-3
-      .card-header Bộ lọc và Tìm kiếm
-      .card-body
-        .row
-          .col-6
-            +filter(filterStatus)
-          .col-6
-            +search(keyword)
+  
+  .card.mb-3
+    .card-header Bộ lọc và Tìm kiếm
+    .card-body
+      .row
+        .col-6
+          +filter(filterStatus)
+        .col-6
+          +search(keyword)
 
-    .card.mb-3
-      .card-header Danh sách
+  .card.mb-3
+    .card-header Danh sách
+      if(products.length > 0)
         .card-body
-          table.table.table-hover.table-sm
-            thead
-              tr
-                th 
-                  input(class="form-check-input" type="checkbox" name="checkAll")
-                th(class="text-center") STT
-                th(class="text-center") Hình ảnh
-                th Tiêu đề
-                th Giá
-                th(class="text-center") Trạng thái
-                th Hành động
+        table.table.table-hover.table-sm
+          thead
+            tr
+              th 
+                input(class="form-check-input" type="checkbox" name="checkAll")
+              th(class="text-center") STT
+              th(class="text-center") Hình ảnh
+              th Tiêu đề
+              th Giá
+              th(class="text-center") Trạng thái
+              th Hành động
 
-            tbody
-              each item, index in products
-                tr 
-                  td 
-                    input(
-                      class="form-check-input"
-                      type="checkbox"
-                      name="id"
-                      value=item.id
-                    )
-                  td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
-                  td(class="text-center")
-                    img(
-                      class="img-products"
-                      src=item.thumbnail
-                      alt=item.title
-                      width="30px"
-                      height="30px"
-                    )
-                  td #{item.title}
-                  td #{item.price}$
-                  td(class="text-center")
-                    a(href="#" class="badge") 
-                      if(item.status == "active")
-                        <i class="bi bi-circle-fill text-success"></i>
-                      else
-                        <i class="bi bi-circle-fill text-secondary"></i>
-                  td
-                    button(class="btn btn-primary btn-sm")
-                      <i class="bi bi-eye-fill"></i>
-                    button(class="btn btn-warning btn-sm mx-1")
-                      <i class="bi bi-pencil-square"></i>
-                    button(class="btn btn-danger btn-sm")
-                      <i class="bi bi-trash"></i>
-      -var link = `products`;
-      .d-flex.align-items-center.justify-content-between
-        +pagination(pagination)
-        +trash(link)
-  else
-    p Chưa có sản phẩm nào!
+          tbody
+            each item, index in products
+              tr 
+                td 
+                  input(
+                    class="form-check-input"
+                    type="checkbox"
+                    name="id"
+                    value=item.id
+                  )
+                td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
+                td(class="text-center")
+                  img(
+                    class="img-products"
+                    src=item.thumbnail
+                    alt=item.title
+                    width="30px"
+                    height="30px"
+                  )
+                td #{item.title}
+                td #{item.price}$
+                td(class="text-center")
+                  a(href="#" 
+                    class="badge" 
+                    data-status=item.status
+                    data-id=item.id
+                    link-change-status
+                  ) 
+                    if(item.status == "active")
+                      i(class="bi bi-circle-fill text-success")
+                    else
+                      i(class="bi bi-circle-fill text-secondary")
+                td
+                  button(class="btn btn-primary btn-sm")
+                    i(class="bi bi-eye-fill")
+                  button(class="btn btn-warning btn-sm mx-1")
+                    i(class="bi bi-pencil-square")
+                  button(class="btn btn-danger btn-sm")
+                    i(class="bi bi-trash")
+      else
+        p Chưa có sản phẩm nào!
+    -var link = `products`;
+    .d-flex.align-items-center.justify-content-between
+      +pagination(pagination)
+      +trash(link)
+  form(
+      action=""
+      method="POST"
+      id="form-change-status"
+      data-path=`${prefixAdmin}/products/change-status`
+    ) 

@@ -1,7 +1,7 @@
 a {
   text-decoration: none;
 }
-h1{
+h1 {
   font-size: 1.4rem;
 }
 /* Header */
@@ -58,3 +58,35 @@ h1{
 .main {
   background: #fff;
 }
+
+/* Show-alert */
+[show-alert] {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+  animation-name: alert-hidden;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+  from {
+    right: 15px;
+  }
+  to {
+    right: -100%;
+    display: none;
+  }
+}
+
+[show-alert] [close-alert] {
+  display: inline-block;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* End Show Alert */

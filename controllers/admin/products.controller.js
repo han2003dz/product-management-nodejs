@@ -41,3 +41,17 @@ module.exports.index = async (req, res) => {
     pagination: objectPagination,
   });
 };
+
+module.exports.changeStatus = async (req, res) => {
+  try {
+    const status = req.params.status;
+    const id = req.params.id;
+    await Product.updateOne({ _id: id }, { status: status });
+    req.flash("success", "Cập nhật trạng thái thành công!");
+  } catch (error) {
+    console.error("Lỗi khi cập nhật trạng thái:", error);
+    req.flash("error", "Cập nhật trạng thái không thành công!");
+  } finally {
+    res.redirect("back");
+  }
+};
