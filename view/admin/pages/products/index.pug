@@ -1,65 +1,62 @@
 extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/trash.pug
 block main
   h1 Danh sách sản phẩm
-
-  .card.mb-3
-    .card-header Bộ lọc và Tìm kiếm
-    .card-body
-      .row
-        .col-6
-          +filter(filterStatus)
-        .col-6
-          +search(keyword)
-
-  .card.mb-3
-    .card-header Danh sách
+  if(products.length > 0)
+    .card.mb-3
+      .card-header Bộ lọc và Tìm kiếm
       .card-body
-        table.table.table-hover.table-sm
-          thead
-            tr
-              th STT
-              th Hình ảnh
-              th Tiêu đề
-              th Giá
-              th Trạng thái
-              th Hành động
+        .row
+          .col-6
+            +filter(filterStatus)
+          .col-6
+            +search(keyword)
 
-          tbody
-            each item, index in products
-              tr 
-                td #{index + 1}
-                td
-                  img(
-                    class="img-products"
-                    src=item.thumbnail
-                    alt=item.title
-                    width="100px"
-                    height="70px"
-                  )
-                td #{item.title}
-                td #{item.price}$
-                td
-                  if(item.status == "active")
-                    a(href="#" class="badge bg-success fs-6") Hoạt động 
-                  else
-                    a(href="#" class="badge bg-danger fs-6") Dừng hoạt động
-                td
-                  button(class="btn btn-warning btn-sm") Sửa
-                  button(class="btn btn-danger btn-sm ms-1") Xóa
+    .card.mb-3
+      .card-header Danh sách
+        .card-body
+          table.table.table-hover.table-sm
+            thead
+              tr
+                th STT
+                th Hình ảnh
+                th Tiêu đề
+                th Giá
+                th Trạng thái
+                th Hành động
 
-  nav(aria-label='Page navigation')
-    ul.pagination
-      li.page-item
-        a.page-link(href='#' aria-label='Previous')
-          span(aria-hidden='true') &laquo;
-      li.page-item
-        a.page-link(href='#') 1
-      li.page-item
-        a.page-link(href='#') 2
-      li.page-item
-        a.page-link(href='#') 3
-      li.page-item
-        a.page-link(href='#' aria-label='Next')
-          span(aria-hidden='true') &raquo;
+            tbody
+              each item, index in products
+                tr 
+                  td #{index + 1}
+                  td
+                    img(
+                      class="img-products"
+                      src=item.thumbnail
+                      alt=item.title
+                      width="30px"
+                      height="30px"
+                    )
+                  td #{item.title}
+                  td #{item.price}$
+                  td
+                    if(item.status == "active")
+                      a(href="#" class="badge bg-success fs-6") Hoạt động 
+                    else
+                      a(href="#" class="badge bg-danger fs-6") Dừng hoạt động
+                  td
+                    button(class="btn btn-primary btn-sm")
+                      <i class="bi bi-eye-fill"></i>
+                    button(class="btn btn-warning btn-sm mx-1")
+                      <i class="bi bi-pencil-square"></i>
+                    button(class="btn btn-danger btn-sm")
+                      <i class="bi bi-trash"></i>
+      -var link = `products`;
+      .d-flex.align-items-center.justify-content-between
+        +pagination(pagination)
+        +trash(link)
+  else
+    p Chưa có sản phẩm nào!

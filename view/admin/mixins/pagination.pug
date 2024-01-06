@@ -1,0 +1,25 @@
+mixin pagination(pagination)
+  div.ms-2(aria-label='Page navigation example')
+    ul.pagination.m-0
+      -var maxPagesToShow = 3;
+      -var startPage = Math.max(1, pagination.currentPage - Math.floor(maxPagesToShow/2));
+      -var endPage = Math.min(pagination.totalPages, startPage + maxPagesToShow - 1);
+      
+      if(pagination.currentPage > 1)
+        li.page-item.h-100
+          a.page-link.text-info.fs-5(href="#" link-pagination=1)
+            span.fs-6(aria-hidden='true') Trang đầu
+        li.page-item.h-100
+          a.page-link.text-info.fs-5(href="#" aria-label="Previous" link-pagination=(pagination.currentPage - 1))
+            span(aria-hidden='true') &laquo;
+      - for (var i = startPage; i <= endPage; i++)
+          li(class=`page-item ${pagination.currentPage == i ? 'active' : ""}`)
+            a.page-link.text-info.fs-5(href='#' aria-current='page' aria-label='Previous' link-pagination=i) #{i}
+
+      if(pagination.currentPage < pagination.totalPages)
+        li.page-item.h-100
+          a.page-link.text-info.fs-5(href="#" aria-label="Next" link-pagination=(pagination.currentPage + 1))
+            span(aria-hidden='true') &raquo;
+        li.page-item.h-100
+          a.page-link.text-info.fs-5(href="#" link-pagination=(pagination.totalPages))
+            span.fs-6(aria-hidden='true') Trang cuối
