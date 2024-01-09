@@ -55,3 +55,25 @@ module.exports.changeStatus = async (req, res) => {
     res.redirect("back");
   }
 };
+
+module.exports.deleteRecord = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Product.updateOne(
+      {
+        _id: id,
+      },
+      {
+        deleted: true,
+      },
+      {
+        deletedAt: new Date(),
+      }
+    );
+    req.flash("success", "Xóa thành công sản phẩm.");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại!");
+  } finally {
+    res.redirect("back");
+  }
+};

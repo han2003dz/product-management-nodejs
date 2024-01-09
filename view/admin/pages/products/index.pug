@@ -68,7 +68,10 @@ block main
                     i(class="bi bi-eye-fill")
                   button(class="btn btn-warning btn-sm mx-1")
                     i(class="bi bi-pencil-square")
-                  button(class="btn btn-danger btn-sm")
+                  button(class="btn btn-danger btn-sm" 
+                    data-id=item.id 
+                    button-delete
+                  )
                     i(class="bi bi-trash")
       else
         p Chưa có sản phẩm nào!
@@ -76,9 +79,16 @@ block main
     .d-flex.align-items-center.justify-content-between
       +pagination(pagination)
       +trash(link)
+
   form(
-      action=""
-      method="POST"
-      id="form-change-status"
-      data-path=`${prefixAdmin}/products/change-status`
-    ) 
+    action=""
+    method="POST"
+    id="form-change-status"
+    data-path=`${prefixAdmin}/products/change-status`
+  ) 
+  form(
+    action=""
+    method="POST"
+    id="form-delete-record"
+    data-path=`${prefixAdmin}/products/delete`
+  )
