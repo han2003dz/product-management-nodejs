@@ -64,9 +64,11 @@ block main
                     else
                       i(class="bi bi-circle-fill text-secondary")
                 td
-                  button(class="btn btn-primary btn-sm")
+                  a(class="btn btn-primary btn-sm")
                     i(class="bi bi-eye-fill")
-                  button(class="btn btn-warning btn-sm mx-1")
+                  a(class="btn btn-warning btn-sm mx-1" 
+                    href=`${prefixAdmin}/products/edit/${item.id}`
+                  )
                     i(class="bi bi-pencil-square")
                   button(class="btn btn-danger btn-sm" 
                     data-id=item.id 
@@ -74,7 +76,7 @@ block main
                   )
                     i(class="bi bi-trash")
       else
-        p Chưa có sản phẩm nào!
+        p.text-center Chưa có sản phẩm nào!
     -var link = `products`;
     .d-flex.align-items-center.justify-content-between
       +pagination(pagination)

@@ -2,7 +2,7 @@ const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
 const Product = require("../../models/products.model");
-
+const systemConfig = require("../../config/system");
 module.exports.index = async (req, res) => {
   const filterStatus = filterStatusHelper(req.query);
   const objectSearch = searchHelper(req.query);
@@ -76,4 +76,43 @@ module.exports.deleteRecord = async (req, res) => {
   } finally {
     res.redirect("back");
   }
+};
+
+module.exports.editRecord = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const product = await Product.findOne({ _id: id, deleted: false });
+    res.render("admin/pages/products/edit.pug", {
+      pageTitle: "Chỉnh sửa sản phẩm",
+      product,
+    });
+  } catch (error) {
+    res.flash("error", "Không tồn tại sản phẩm này!");
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
+  }
+};
+
+module.exports.editRecordPatch = async (req, res) => {
+  console.log(req.body);
+  req.body.price = parseInt(req.body.price);
+  req.body.discountPercentage = parseInt(req.body.discountPercentage);
+  req.body.stock = parseInt(req.body.stock);
+
+  try {
+    const updatedBy = {
+      // account_id: res.locals.user.id,
+      updatedAt: new Date(),
+    };
+    await Product.updateOne(
+      {
+        _id: req.params.id,
+      },
+      { ...req.body, $push: { updatedBy: updatedBy } }
+    );
+    req.flash("success", "Cập nhật thành công");
+  } catch (error) {
+    req.flash("error", "Cập nhật thất bại");
+    console.log(error);
+  }
+  res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
