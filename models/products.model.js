@@ -53,7 +53,6 @@ const productSchema = new mongoose.Schema(
 
 // Add plugin
 mongoose.plugin(slug);
-// productSchema.plugin(mongooseDelete);
 
 // export model
 const Product = mongoose.model("Products", productSchema, "products");

@@ -17,64 +17,71 @@ block main
 
   .card.mb-3
     .card-header Danh sách
+      .card-body
+        .row
+          .col-10
+            //- a.btn.btn-outline-success(href=`${prefixAdmin}/products/create`) + Thêm mới
+            //- +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+          .col-2
+            a.btn.btn-outline-success(href=`${prefixAdmin}/products/create`) + Thêm mới
       if(products.length > 0)
         .card-body
-        table.table.table-hover.table-sm
-          thead
-            tr
-              th 
-                input(class="form-check-input" type="checkbox" name="checkAll")
-              th(class="text-center") STT
-              th(class="text-center") Hình ảnh
-              th Tiêu đề
-              th Giá
-              th(class="text-center") Trạng thái
-              th Hành động
+          table.table.table-hover.table-sm
+            thead
+              tr
+                th 
+                  input(class="form-check-input" type="checkbox" name="checkAll")
+                th(class="text-center") STT
+                th(class="text-center") Hình ảnh
+                th Tiêu đề
+                th Giá
+                th(class="text-center") Trạng thái
+                th Hành động
 
-          tbody
-            each item, index in products
-              tr 
-                td 
-                  input(
-                    class="form-check-input"
-                    type="checkbox"
-                    name="id"
-                    value=item.id
-                  )
-                td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
-                td(class="text-center")
-                  img(
-                    class="img-products"
-                    src=item.thumbnail
-                    alt=item.title
-                    width="30px"
-                    height="30px"
-                  )
-                td #{item.title}
-                td #{item.price}$
-                td(class="text-center")
-                  a(href="#" 
-                    class="badge" 
-                    data-status=item.status
-                    data-id=item.id
-                    link-change-status
-                  ) 
-                    if(item.status == "active")
-                      i(class="bi bi-circle-fill text-success")
-                    else
-                      i(class="bi bi-circle-fill text-secondary")
-                td
-                  a(class="btn btn-primary btn-sm")
-                    i(class="bi bi-eye-fill")
-                  a(class="btn btn-warning btn-sm mx-1" 
-                    href=`${prefixAdmin}/products/edit/${item.id}`
-                  )
-                    i(class="bi bi-pencil-square")
-                  button(class="btn btn-danger btn-sm" 
-                    data-id=item.id 
-                    button-delete
-                  )
-                    i(class="bi bi-trash")
+            tbody
+              each item, index in products
+                tr 
+                  td 
+                    input(
+                      class="form-check-input"
+                      type="checkbox"
+                      name="id"
+                      value=item.id
+                    )
+                  td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
+                  td(class="text-center")
+                    img(
+                      class="img-products"
+                      src=item.thumbnail
+                      alt=item.title
+                      width="30px"
+                      height="30px"
+                    )
+                  td #{item.title}
+                  td #{item.price}$
+                  td(class="text-center")
+                    a(href="#" 
+                      class="badge" 
+                      data-status=item.status
+                      data-id=item.id
+                      link-change-status
+                    ) 
+                      if(item.status == "active")
+                        i(class="bi bi-circle-fill text-success")
+                      else
+                        i(class="bi bi-circle-fill text-secondary")
+                  td
+                    a(class="btn btn-primary btn-sm")
+                      i(class="bi bi-eye-fill")
+                    a(class="btn btn-warning btn-sm mx-1" 
+                      href=`${prefixAdmin}/products/edit/${item.id}`
+                    )
+                      i(class="bi bi-pencil-square")
+                    button(class="btn btn-danger btn-sm" 
+                      data-id=item.id 
+                      button-delete
+                    )
+                      i(class="bi bi-trash")
       else
         p.text-center Chưa có sản phẩm nào!
     -var link = `products`;

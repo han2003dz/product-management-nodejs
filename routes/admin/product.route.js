@@ -11,4 +11,7 @@ router.delete("/delete/:id", controller.deleteRecord);
 router.get("/edit/:id", controller.editRecord);
 router.patch("/edit/:id", controller.editRecordPatch);
 
+router.get("/create", controller.createRecord);
+router.post("/create", controller.createRecordPost);
+
 module.exports = router;

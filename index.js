@@ -4,7 +4,6 @@ const routeClient = require("./routes/client/index.route");
 const routeAdmin = require("./routes/admin/index.route");
 const database = require("./config/database");
 require("dotenv").config();
-
 database.connect();
 
 const methodOverride = require("method-override");
@@ -21,25 +20,24 @@ const parser = process.env.PARSER;
 
 const systemConfig = require("./config/system");
 
-app.set("views", `${__dirname}/view`);
-
-app.set("view engine", "pug");
-
-app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride("_method"));
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// tinyMce
-app.use(
-  "/tinymce",
-  express.static(path.join(__dirname, "node_modules", "tinymce"))
-);
 // flash
 app.use(cookieParser(`${parser}`));
 app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 // end flash
 
+app.set("views", `${__dirname}/view`);
+app.set("view engine", "pug");
+app.use(express.static(`${__dirname}/public`));
+
+// tinyMce
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 routeClient(app);
 routeAdmin(app);

@@ -1,0 +1,110 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  h1 Thêm sản phẩm mới
+  form(
+    action=`${prefixAdmin}/products/create`
+    id="form-create-product"
+    method="POST"
+    class="border border-1 p-4 me-3"
+  )
+    .row
+      .col-4
+        .row
+          .form-group.mb-2 
+            label(for="title" class="form-label") Tiêu đề
+            input.form-control(
+              type="text"
+              id="title"
+              name="title"
+              required
+            )
+        .row
+          .form-group.mb-2(upload-image)
+            label(for="thumbnail" class="form-label") Ảnh
+            input.form-control(
+              type="file"
+              class="form-control-file"
+              id="thumbnail"
+              name="thumbnail"
+              accept="image/*"
+              upload-image-input
+            )
+            img(
+              src=""
+              upload-image-preview
+              class="img-thumbnail"
+            )
+      .col-8
+        .row
+          .col-6
+            div(class="form-group mb-2")
+              label(for="price" class="form-label") Giá gốc
+              input(
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                value="0"
+                min="0"
+              )
+          .col-6
+            div(class="form-group mb-2")
+              label(for="discount" class="form-label") % Giảm giá
+              input(
+                type="number"
+                class="form-control"
+                id="discount"
+                name="discountPercentage"
+                value="0"
+                min="0"
+              )
+        .row
+          .col-6
+            div(class="form-group mb-2")
+              label(for="stock" class="form-label") Số lượng
+              input(
+                type="number"
+                class="form-control"
+                id="stock"
+                name="stock"
+                value="0"
+                min="0"
+              )
+        .row
+          .col-3
+            span Trạng thái:
+          .col-4
+            .form-group.form-check.form-check-inline.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusActive"
+                name="status"
+                value="active"
+                checked
+              )
+              label(for="statusActive" class="form-check-label") Hoạt động
+          .col-5
+            .form-group.form-check.form-check-inline.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusInActive"
+                name="status"
+                value="inactive"
+              )
+              label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+        .row
+          .form-group.mb-2
+            label(for="desc" class="form-label") Mô tả
+            textarea.form-control.textarea-mce(
+              id="desc"
+              name="description"
+              rows="6"
+            )
+        .row.w-25.m-1
+          button.btn.btn-primary(type="submit") Thêm mới
+      
+      
+      

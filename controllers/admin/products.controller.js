@@ -116,3 +116,29 @@ module.exports.editRecordPatch = async (req, res) => {
   }
   res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
+
+module.exports.createRecord = async (req, res) => {
+  try {
+    res.render("admin/pages/products/create.pug", {
+      pageTitle: "Thêm sản phẩm",
+    });
+  } catch (error) {
+    res.flash("error", "Bạn không có quyền tạo phẩm mới!");
+    console.log(error);
+  }
+};
+
+module.exports.createRecordPost = async (req, res) => {
+  try {
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    // req.body.thumbnail = `/uploads/${req.file.filename}`;
+    const product = new Product(req.body);
+    await product.save();
+  } catch (error) {
+    console.log("error: ", error);
+  } finally {
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
+  }
+};
