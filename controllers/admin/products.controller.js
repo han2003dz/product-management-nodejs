@@ -136,9 +136,10 @@ module.exports.createRecordPost = async (req, res) => {
     // req.body.thumbnail = `/uploads/${req.file.filename}`;
     const product = new Product(req.body);
     await product.save();
+    req.flash("success", "Thêm thành công sản phẩm mới!");
   } catch (error) {
     console.log("error: ", error);
-  } finally {
-    res.redirect(`${systemConfig.prefixAdmin}/products`);
+    req.flash("error", "Không thêm được sản phẩm mới!");
   }
+  res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
