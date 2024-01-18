@@ -1,9 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const routeClient = require("./routes/client/index.route");
 const routeAdmin = require("./routes/admin/index.route");
 const database = require("./config/database");
-require("dotenv").config();
 database.connect();
 
 const methodOverride = require("method-override");

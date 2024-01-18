@@ -133,7 +133,7 @@ module.exports.createRecordPost = async (req, res) => {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
-    // req.body.thumbnail = `/uploads/${req.file.filename}`;
+    console.log("req.file: ",req.file);
     const product = new Product(req.body);
     await product.save();
     req.flash("success", "Thêm thành công sản phẩm mới!");
