@@ -1,6 +1,7 @@
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
+const priceNew = require("../../helpers/priceNew");
 const Product = require("../../models/products.model");
 const systemConfig = require("../../config/system");
 module.exports.index = async (req, res) => {
@@ -150,6 +151,7 @@ module.exports.detailRecord = async (req, res) => {
       _id: req.params.id,
     };
     const product = await Product.findOne(find);
+    product.priceNew = priceNew.priceNewProduct(product);
     res.render("admin/pages/products/detail", {
       pageTitle: product.title,
       product: product,
