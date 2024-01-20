@@ -133,7 +133,6 @@ module.exports.createRecordPost = async (req, res) => {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
-    console.log("req.file: ",req.file);
     const product = new Product(req.body);
     await product.save();
     req.flash("success", "Thêm thành công sản phẩm mới!");
@@ -142,4 +141,21 @@ module.exports.createRecordPost = async (req, res) => {
     req.flash("error", "Không thêm được sản phẩm mới!");
   }
   res.redirect(`${systemConfig.prefixAdmin}/products`);
+};
+
+module.exports.detailRecord = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const product = await Product.findOne(find);
+    res.render("admin/pages/products/detail", {
+      pageTitle: product.title,
+      product: product,
+    });
+  } catch (error) {
+    console.log("error detail: ", error);
+    res.flash("error", "Không thể xem chi tiết sản phẩm này!");
+  }
 };

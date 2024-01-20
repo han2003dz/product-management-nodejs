@@ -29,4 +29,6 @@ router.post(
   controller.createRecordPost
 );
 
+router.get("/detail/:id", controller.detailRecord);
+
 module.exports = router;
