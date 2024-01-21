@@ -7,19 +7,19 @@ mixin pagination(pagination)
 
       if(pagination.currentPage > 1)
         li.page-item.h-100
-          a.page-link.text-info.fs-5(href="#" link-pagination=1)
+          a.page-link.text-info.fs-6(href="#" link-pagination=1)
             span.fs-6(aria-hidden='true') Trang đầu
         li.page-item.h-100
-          a.page-link.text-info.fs-5(href="#" aria-label="Previous" link-pagination=(pagination.currentPage - 1))
+          a.page-link.text-info.fs-6(href="#" aria-label="Previous" link-pagination=(pagination.currentPage - 1))
             span(aria-hidden='true') &laquo;
       - for (var i = startPage; i <= endPage; i++)
         li(class=`page-item ${pagination.currentPage == i ? 'active' : ""}`)
-          a.page-link.text-info.fs-5(href='#' aria-current='page' aria-label='Previous' link-pagination=i) #{i}
+          a.page-link.text-info.fs-6(href='#' aria-current='page' aria-label='Previous' link-pagination=i) #{i}
 
       if(pagination.currentPage < pagination.totalPages)
         li.page-item.h-100
-          a.page-link.text-info.fs-5(href="#" aria-label="Next" link-pagination=(pagination.currentPage + 1))
+          a.page-link.text-info.fs-6(href="#" aria-label="Next" link-pagination=(pagination.currentPage + 1))
             span(aria-hidden='true') &raquo;
         li.page-item.h-100
-          a.page-link.text-info.fs-5(href="#" link-pagination=(pagination.totalPages))
+          a.page-link.text-info.fs-6(href="#" link-pagination=(pagination.totalPages))
             span.fs-6(aria-hidden='true') Trang cuối
