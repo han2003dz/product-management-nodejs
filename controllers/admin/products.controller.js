@@ -2,22 +2,19 @@ const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
 const priceNew = require("../../helpers/priceNew");
+const sortOptions = require("../../helpers/sort");
+
 const Product = require("../../models/products.model");
 const systemConfig = require("../../config/system");
 module.exports.index = async (req, res) => {
   const filterStatus = filterStatusHelper(req.query);
   const objectSearch = searchHelper(req.query);
 
-  let find = {
+  const find = {
     deleted: false,
+    ...(req.query.status && { status: req.query.status }),
+    ...(objectSearch.regex && { title: objectSearch.regex }),
   };
-
-  if (req.query.status) {
-    find.status = req.query.status;
-  }
-  if (objectSearch.regex) {
-    find.title = objectSearch.regex;
-  }
 
   // pagination
   const totalRecord = await Product.countDocuments(find);
@@ -31,9 +28,14 @@ module.exports.index = async (req, res) => {
   );
   //end pagination
 
+  // sort
+  const sort = sortOptions(req);
+  // end sort
+
   const products = await Product.find(find)
     .limit(objectPagination.limitItem)
-    .skip(objectPagination.skip);
+    .skip(objectPagination.skip)
+    .sort(sort);
   res.render("admin/pages/products/index.pug", {
     pageTitle: "Danh sách sản phẩm",
     products,
