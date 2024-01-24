@@ -3,7 +3,7 @@ include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/trash.pug
-include ../../mixins/sort.pug
+include ../../mixins/sortProduct.pug
 block main
   h1 
     i(class="bi bi-door-open")
@@ -21,13 +21,15 @@ block main
       p.fs-5 Bảng sản phẩm
       .card-body.p-0
         .row
-          .col-8
+          .col-6
             +filter(filterStatus)
             a(
               href=`${prefixAdmin}/products/create`
             ) 
               button(class="btn btn-sm btn-outline-success") + Thêm mới
-          .col-4
+          .col-3
+            +sortProduct()
+          .col-3
             +search(keyword)
         .row
           .col-10
