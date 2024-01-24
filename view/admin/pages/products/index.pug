@@ -4,6 +4,7 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/trash.pug
 include ../../mixins/sortProduct.pug
+include ../../mixins/changeMulti.pug
 block main
   h1 
     i(class="bi bi-door-open")
@@ -31,9 +32,9 @@ block main
             +sortProduct()
           .col-3
             +search(keyword)
-        .row
-          .col-10
-            //- +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+        .row.mt-2
+          .col-6
+            +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
       if(products.length > 0)
         .card-body.p-1
           table(class="table table-hover table-sm" checkbox-multi)

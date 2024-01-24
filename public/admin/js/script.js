@@ -189,3 +189,47 @@ if (sort) {
   });
 }
 // End Button sort
+
+// Form-changeMulti
+const formChangeMulti = document.querySelector("[form-change-multi]");
+if (formChangeMulti) {
+  formChangeMulti.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // lấy ra table có element checkbox-multi
+    const checkBoxMulti = document.querySelector("[checkbox-multi]");
+    // lấy ra các ô checkbox đã check
+    const inputsChecked = checkBoxMulti.querySelectorAll(
+      "input[name='check-item']:checked"
+    );
+    const typeChange = e.target.elements.type.value;
+    if (typeChange == "deleted-all") {
+      const isConfirm = confirm("bạn có chắc chắn muốn xóa tất cả không ?");
+      if (!isConfirm) {
+        return;
+      }
+    }
+
+    // nếu người dùng đã check thì mới submit
+    if (inputsChecked.length > 0) {
+      let arrIds = [];
+      const inputIds = formChangeMulti.querySelector("input[name='ids']");
+      inputsChecked.forEach((input) => {
+        const id = input.value;
+        if (typeChange == "change-position") {
+          // đi từ ô input đã checked tới thẻ cha tr sau đó từ tr đó query qua input có name=position
+          const position = input
+            .closest("tr")
+            .querySelector("input[name='position']").value;
+          arrIds.push(`${id}-${position}`);
+        } else {
+          arrIds.push(id);
+        }
+      });
+      inputIds.value = arrIds.join(",");
+      formChangeMulti.submit();
+    } else {
+      alert("vui lòng chọn ít nhất 1 bản ghi để áp dụng");
+    }
+  });
+}
+// End form change multi
