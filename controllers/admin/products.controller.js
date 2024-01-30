@@ -183,7 +183,7 @@ module.exports.createRecord = async (req, res) => {
       pageTitle: "Thêm sản phẩm",
     });
   } catch (error) {
-    res.flash("error", "Bạn không có quyền tạo phẩm mới!");
+    res.flash("error", "Bạn không có quyền tạo sản phẩm mới!");
     console.log(error);
   }
 };

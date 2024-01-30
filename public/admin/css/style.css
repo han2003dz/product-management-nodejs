@@ -52,7 +52,8 @@ h1 {
 }
 /* End sidebar */
 
-.img-products {
+.img-products,
+.img-categories {
   object-fit: cover;
 }
 .main {

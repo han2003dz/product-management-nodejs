@@ -1,0 +1,85 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  h1 Thêm sản phẩm mới
+  form(
+    action=`${prefixAdmin}/categories/create`
+    id="form-create-category"
+    method="POST"
+    enctype="multipart/form-data"
+    class="border border-1 p-4 me-3"
+  )
+    .row
+      .col-4
+        .row
+          .form-group.mb-2 
+            label(for="title" class="form-label") Tên danh mục *
+            input.form-control(
+              type="text"
+              id="title"
+              name="title"
+              required
+            )
+        .row
+          .form-group.mb-2(upload-image)
+            label(for="thumbnail" class="form-label") Hình ảnh
+            input.form-control(
+              type="file"
+              class="form-control-file"
+              id="thumbnail"
+              name="thumbnail"
+              accept="image/*"
+              upload-image-input
+            )
+            img(
+              src=""
+              upload-image-preview
+              class="img-thumbnail"
+            )
+      .col-8
+        .row
+          .col-6
+            div(class="form-group mb-2")
+              label(for="parent-id" class="form-label") Danh mục cha
+              input.form-control(
+                type="text"
+                id="parent-id"
+                name="parent-id"
+              )
+        .row
+          .col-3
+            span Trạng thái *:
+          .col-4
+            .form-group.form-check.form-check-inline.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusActive"
+                name="status"
+                value="active"
+                checked
+              )
+              label(for="statusActive" class="form-check-label") Hoạt động
+          .col-5
+            .form-group.form-check.form-check-inline.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusInActive"
+                name="status"
+                value="inactive"
+              )
+              label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+        .row
+          .form-group.mb-2
+            label(for="desc" class="form-label") Mô tả
+            textarea.form-control.textarea-mce(
+              id="desc"
+              name="description"
+              rows="6"
+            )
+        .row.w-25.m-1
+          button.btn.btn-primary(type="submit") Thêm mới
+      
+      
+      
