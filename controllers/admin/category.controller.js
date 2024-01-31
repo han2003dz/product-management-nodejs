@@ -145,3 +145,21 @@ module.exports.editRecordPatch = async (req, res) => {
     res.redirect(`${systemConfig.prefixAdmin}/categories`);
   }
 };
+
+module.exports.changeStatus = async (req, res) => {
+  try {
+    const { id, status } = req.params;
+    await Categories.updateOne(
+      { _id: id },
+      {
+        status: status,
+      }
+    );
+    req.flash("success", "Cập nhật trạng thái thành công!");
+  } catch (error) {
+    console.error("Lỗi khi cập nhật trạng thái:", error);
+    req.flash("error", "Cập nhật trạng thái không thành công!");
+  } finally {
+    res.redirect("back");
+  }
+};

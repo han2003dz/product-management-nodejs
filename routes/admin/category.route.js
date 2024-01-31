@@ -29,4 +29,5 @@ router.patch(
   controller.editRecordPatch
 );
 
+router.patch("/change-status/:status/:id", controller.changeStatus);
 module.exports = router;
