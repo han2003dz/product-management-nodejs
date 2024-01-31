@@ -81,3 +81,38 @@ module.exports.deleteRecord = async (req, res) => {
     res.redirect("back");
   }
 };
+
+module.exports.editRecord = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const category = await Categories.findOne({ _id: id, deleted: false });
+    res.render("admin/pages/categories/edit.pug", {
+      pageTitle: "Chỉnh sửa danh mục",
+      category,
+    });
+  } catch (error) {
+    req.flash("error", "Không tồn tại danh mục này!");
+    console.log("error edit category: ", error);
+    res.redirect(`${systemConfig.prefixAdmin}/categories`);
+  }
+};
+
+module.exports.editRecordPatch = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedBy = {
+      // account_id: res.locals.user.id,
+      updatedAt: new Date(),
+    };
+    await Categories.updateOne(
+      { _id: id },
+      { ...req.body, $push: { updatedBy: updatedBy } }
+    );
+    req.flash("success", "Cập nhật thành công!");
+  } catch (error) {
+    req.flash("error", "Cập nhật thất bại");
+    console.log("error edit category: ", error);
+  } finally {
+    res.redirect(`${systemConfig.prefixAdmin}/categories`);
+  }
+};
