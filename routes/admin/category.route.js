@@ -18,4 +18,6 @@ router.post(
 );
 
 router.get("/detail/:id", controller.detailRecord);
+
+router.delete("/delete/:id", controller.deleteRecord);
 module.exports = router;

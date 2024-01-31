@@ -59,3 +59,25 @@ module.exports.detailRecord = async (req, res) => {
     res.flash("error detail category", "Không thể xem chi tiết danh mục này!");
   }
 };
+
+module.exports.deleteRecord = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Categories.updateOne(
+      {
+        _id: id,
+      },
+      {
+        deleted: true,
+      },
+      {
+        deletedAt: new Date(),
+      }
+    );
+    req.flash("success", "Xóa thành công danh mục");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại danh mục sản phẩm!");
+  } finally {
+    res.redirect("back");
+  }
+};
