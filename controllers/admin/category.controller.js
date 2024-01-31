@@ -34,12 +34,28 @@ module.exports.createRecordPost = async (req, res) => {
   try {
     const categories = new Categories(req.body);
     await categories.save();
-    console.log(categories);
     req.flash("success", "Thêm thành công danh mục mới!");
   } catch (error) {
     res.flash("error", "Thêm mới danh mục thất bại!");
     console.log("error create category: ", error);
   } finally {
     res.redirect(`${systemConfig.prefixAdmin}/categories`);
+  }
+};
+
+module.exports.detailRecord = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const categories = await Categories.findOne(find);
+    res.render("admin/pages/categories/detail", {
+      pageTitle: categories.title,
+      categories: categories,
+    });
+  } catch (error) {
+    console.log("error detail: ", error);
+    res.flash("error detail category", "Không thể xem chi tiết danh mục này!");
   }
 };

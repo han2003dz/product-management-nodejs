@@ -1,0 +1,56 @@
+extends ../../layouts/default
+
+block main
+  .row.p-0
+    .col-2.p-0
+      a(
+        href="javascript:history.back()"
+        class="btn me-0"
+      ) 
+        i(class="bi bi-box-arrow-in-left") Trang trước
+  .row.bg-light.p-2.me-0
+    .col-5.img-categories.p-0
+      .row
+        if (categories.thumbnail)
+          img(
+            class="w-80 h-100 p-0 d-block"
+            src=categories.thumbnail
+          )
+    .col-7.info-categories
+      .row
+        if (categories.title)
+          h1(class="mb-3") #{categories.title}
+      .row
+        .col-md-6
+          if (categories.status)
+            div(class="mb-3")
+              span Trạng thái:
+              if (categories.status === "active")
+                span(class="text-success ms-1 fw-bolder") Hoạt động
+              else
+                span(class="text-danger ms-1 fw-bolder") Dừng hoạt động
+
+      .row
+        .col-md-12
+          if (categories.description)
+            div(class="mb-3") 
+              textarea.form-control.textarea-mce(
+                id="desc"
+                name="description"
+                rows="6"
+                class="w-100"
+              ) #{categories.description}
+          else
+            div(class="mb-3") 
+              textarea.form-control.textarea-mce(
+                id="desc"
+                name="description"
+                rows="6"
+                class="w-100"
+              )
+      .row
+        .col-md-4
+          a(
+            href=`${prefixAdmin}/categories/edit/${categories.id}`
+            class="btn btn-warning mb-2"
+          ) Chỉnh sửa
