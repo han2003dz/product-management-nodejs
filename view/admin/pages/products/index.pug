@@ -83,11 +83,12 @@ block main
                       else
                         i(class="bi bi-circle-fill text-secondary")
                   td
-                    each category in categories
-                      if category.id === item.product_category_id
-                        p #{category.title}
-                      else
-                        p N/A
+                    if(categories)
+                      each category in categories
+                        if category.id === item.product_category_id
+                          p #{category.title}
+                    else
+                      p N/A
                   td
                     a(class="btn btn-primary btn-sm" 
                       href=`${prefixAdmin}/products/detail/${item.id}`
