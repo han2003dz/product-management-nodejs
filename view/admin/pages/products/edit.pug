@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
 block main
   h1 Chỉnh sửa sản phẩm
   form(
@@ -12,7 +13,7 @@ block main
     .row
       .col-4
         .row
-          .form-group.mb-2 
+          .form-group
             label(for="title" class="form-label") Tiêu đề
             input.form-control(
               type="text"
@@ -22,7 +23,18 @@ block main
               value=product.title
             )
         .row
-          .form-group.mb-2(upload-image)
+          div(class="form-group my-2")
+            label(for="product_category_id" class="form-label") Danh mục
+            select(
+              name="product_category_id"
+              id="product_category_id"
+              class="form-control form-select"
+            )
+              option(value="") -- Chọn danh mục --
+              if(category)
+                +select-tree(category, 1, product.product_category_id)
+        .row
+          .form-group(upload-image)
             label(for="thumbnail" class="form-label") Ảnh
             input.form-control(
               type="file"

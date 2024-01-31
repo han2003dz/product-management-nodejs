@@ -47,6 +47,7 @@ block main
                 th Tiêu đề
                 th Giá
                 th(class="text-center") Trạng thái
+                th Danh mục
                 th Hành động
 
             tbody
@@ -81,6 +82,10 @@ block main
                         i(class="bi bi-circle-fill text-success")
                       else
                         i(class="bi bi-circle-fill text-secondary")
+                  td
+                    each category in categories
+                      if category.id === item.product_category_id
+                        p #{category.title}
                   td
                     a(class="btn btn-primary btn-sm" 
                       href=`${prefixAdmin}/products/detail/${item.id}`

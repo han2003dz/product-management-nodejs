@@ -6,6 +6,8 @@ const sortOptions = require("../../helpers/sort");
 
 const Product = require("../../models/products.model");
 const systemConfig = require("../../config/system");
+const Categories = require("../../models/category.model");
+const treeCategory = require("../../helpers/treeCategory");
 module.exports.index = async (req, res) => {
   try {
     const filterStatus = filterStatusHelper(req.query);
@@ -37,9 +39,14 @@ module.exports.index = async (req, res) => {
       .limit(objectPagination.limitItem)
       .skip(objectPagination.skip)
       .sort(sort);
+    const dataCategory = await Categories.find({
+      deleted: false,
+    });
+    const categories = treeCategory.tree(dataCategory);
     res.render("admin/pages/products/index.pug", {
       pageTitle: "Danh sách sản phẩm",
       products,
+      categories,
       filterStatus,
       keyword: objectSearch.keyword,
       pagination: objectPagination,
@@ -147,11 +154,19 @@ module.exports.deleteRecord = async (req, res) => {
 
 module.exports.editRecord = async (req, res) => {
   try {
-    const id = req.params.id;
-    const product = await Product.findOne({ _id: id, deleted: false });
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const product = await Product.findOne(find);
+    const dataCategory = await Categories.find({
+      deleted: false,
+    });
+    const category = treeCategory.tree(dataCategory);
     res.render("admin/pages/products/edit.pug", {
       pageTitle: "Chỉnh sửa sản phẩm",
       product,
+      category,
     });
   } catch (error) {
     res.flash("error", "Không tồn tại sản phẩm này!");
