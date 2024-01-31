@@ -163,3 +163,61 @@ module.exports.changeStatus = async (req, res) => {
     res.redirect("back");
   }
 };
+
+module.exports.changeMulti = async (req, res) => {
+  try {
+    const type = req.body.type;
+    const ids = req.body.ids.split(",");
+    const updatedBy = {
+      updatedAt: new Date(),
+    };
+    switch (type) {
+      case "active":
+        await Categories.updateMany(
+          { _id: { $in: ids } },
+          {
+            status: "active",
+            $push: { updatedBy: updatedBy },
+          }
+        );
+        req.flash(
+          "success",
+          `Cập nhật thành công trạng thái hoạt động của ${ids.length} danh mục.`
+        );
+        break;
+      case "inactive":
+        await Categories.updateMany(
+          { _id: { $in: ids } },
+          {
+            status: "inactive",
+            $push: { updatedBy: updatedBy },
+          }
+        );
+        req.flash(
+          "success",
+          `Cập nhật thành công trạng thái dừng hoạt động của ${ids.length} danh mục.`
+        );
+        break;
+      case "deleted-all":
+        await Categories.updateMany(
+          { _id: { $in: ids } },
+          {
+            deleted: true,
+            deletedBy: {
+              account_id: res.locals.user.id,
+              deletedAt: new Date(),
+            },
+          }
+        );
+        req.flash("success", `Đã xóa thành công ${ids.length} danh mục.`);
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    req.flash("error", "Chưa thể thực hiện được nhiều thay đổi!");
+    console.log("error change multi: ", error);
+  } finally {
+    res.redirect("back");
+  }
+};
