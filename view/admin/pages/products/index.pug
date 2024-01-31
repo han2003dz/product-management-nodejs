@@ -86,6 +86,8 @@ block main
                     each category in categories
                       if category.id === item.product_category_id
                         p #{category.title}
+                      else
+                        p N/A
                   td
                     a(class="btn btn-primary btn-sm" 
                       href=`${prefixAdmin}/products/detail/${item.id}`

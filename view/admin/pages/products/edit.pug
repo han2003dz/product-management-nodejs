@@ -31,8 +31,8 @@ block main
               class="form-control form-select"
             )
               option(value="") -- Chọn danh mục --
-              if(category)
-                +select-tree(category, 1, product.product_category_id)
+              if(categories)
+                +select-tree(categories, 1, product.product_category_id)
         .row
           .form-group(upload-image)
             label(for="thumbnail" class="form-label") Ảnh

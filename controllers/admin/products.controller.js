@@ -39,6 +39,7 @@ module.exports.index = async (req, res) => {
       .limit(objectPagination.limitItem)
       .skip(objectPagination.skip)
       .sort(sort);
+    // const products = await Product.find(find).sort(sort);
     const dataCategory = await Categories.find({
       deleted: false,
     });
@@ -162,11 +163,11 @@ module.exports.editRecord = async (req, res) => {
     const dataCategory = await Categories.find({
       deleted: false,
     });
-    const category = treeCategory.tree(dataCategory);
+    const categories = treeCategory.tree(dataCategory);
     res.render("admin/pages/products/edit.pug", {
       pageTitle: "Chỉnh sửa sản phẩm",
       product,
-      category,
+      categories,
     });
   } catch (error) {
     res.flash("error", "Không tồn tại sản phẩm này!");
@@ -200,8 +201,13 @@ module.exports.editRecordPatch = async (req, res) => {
 
 module.exports.createRecord = async (req, res) => {
   try {
+    const dataCategory = await Categories.find({
+      deleted: false,
+    });
+    const categories = treeCategory.tree(dataCategory);
     res.render("admin/pages/products/create.pug", {
       pageTitle: "Thêm sản phẩm",
+      categories,
     });
   } catch (error) {
     res.flash("error", "Bạn không có quyền tạo sản phẩm mới!");
