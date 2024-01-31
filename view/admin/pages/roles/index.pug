@@ -3,38 +3,35 @@ include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/trash.pug
-include ../../mixins/sortCategory.pug
 include ../../mixins/changeMulti.pug
 block main
   h1 
     i(class="bi bi-door-open")
-    span Quản lý danh mục
+    span Nhóm quyền
   .row
     .col-auto.pe-1
       a(href=`${prefixAdmin}/dashboard` class="bi bi-house text-dark")
     .col-auto.p-0
-      p - Quản trị hệ thống
+      p - Quyền hệ thống
     .col-auto.ps-1
-      a(href=`${prefixAdmin}/categories`) - Quản lý danh mục
+      a(href=`${prefixAdmin}/roles`) - Nhóm quyền
   .card.mb-3
     .card-header 
-      p.fs-5 Bảng danh mục
+      p.fs-5 Bảng quyền hệ thống
       .card-body.p-0
         .row
           .col-6
             +filter(filterStatus)
             a(
-              href=`${prefixAdmin}/categories/create`
+              href=`${prefixAdmin}/roles/create`
             ) 
               button(class="btn btn-sm btn-outline-success") + Thêm mới
-          .col-3
-            +sortCategory()
           .col-3
             +search(keyword)
         .row.mt-2
           .col-6
-            +form-change-multi(`${prefixAdmin}/categories/change-multi?_method=PATCH`)
-      if(categories.length > 0)
+            +form-change-multi(`${prefixAdmin}/roles/change-multi?_method=PATCH`)
+      if(roles.length > 0)
         .card-body.p-1
           table(class="table table-hover table-sm" checkbox-multi)
             thead
@@ -42,13 +39,12 @@ block main
                 th 
                   input(class="form-check-input" type="checkbox" name="checkAll")
                 th(class="text-center") STT
-                th(class="text-center") Hình ảnh
-                th Danh mục
+                th Tên quyền
                 th(class="text-center") Trạng thái
                 th Hành động
 
             tbody
-              each item, index in categories
+              each item, index in roles
                 tr 
                   td 
                     input(
@@ -57,17 +53,6 @@ block main
                       name="check-item"
                       value=item.id
                     )
-                  //- td(class="text-center") #{index + 1}
-                  td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
-                  td(class="text-center")
-                    img(
-                      class="img-categories"
-                      src=item.thumbnail
-                      alt=item.title
-                      width="30px"
-                      height="30px"
-                    )
-                  td #{item.title}
                   td(class="text-center")
                     a(href="#" 
                       class="badge" 
@@ -81,11 +66,11 @@ block main
                         i(class="bi bi-circle-fill text-secondary")
                   td
                     a(class="btn btn-primary btn-sm" 
-                      href=`${prefixAdmin}/categories/detail/${item.id}`
+                      href=`${prefixAdmin}/roles/detail/${item.id}`
                     )
                       i(class="bi bi-eye-fill")
                     a(class="btn btn-warning btn-sm mx-1" 
-                      href=`${prefixAdmin}/categories/edit/${item.id}`
+                      href=`${prefixAdmin}/roles/edit/${item.id}`
                     )
                       i(class="bi bi-pencil-square")
                     button(class="btn btn-danger btn-sm" 
@@ -94,21 +79,21 @@ block main
                     )
                       i(class="bi bi-trash")
       else
-        p.text-center Chưa có danh mục nào!
-    -var link = `categories`;
+        p.text-center Chưa có quyền nào!
+    -var link = `roles`;
     .d-flex.align-items-center.justify-content-between
-      +pagination(pagination)
+      //- +pagination(pagination)
       +trash(link)
 
   form(
     action=""
     method="POST"
     id="form-change-status"
-    data-path=`${prefixAdmin}/categories/change-status`
+    data-path=`${prefixAdmin}/roles/change-status`
   ) 
   form(
     action=""
     method="POST"
     id="form-delete-record"
-    data-path=`${prefixAdmin}/categories/delete`
+    data-path=`${prefixAdmin}/roles/delete`
   )

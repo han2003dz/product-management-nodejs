@@ -8,6 +8,7 @@ const Product = require("../../models/products.model");
 const systemConfig = require("../../config/system");
 const Categories = require("../../models/category.model");
 const treeCategory = require("../../helpers/treeCategory");
+
 module.exports.index = async (req, res) => {
   try {
     const filterStatus = filterStatusHelper(req.query);
