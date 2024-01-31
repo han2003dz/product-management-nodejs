@@ -2,21 +2,50 @@ const Categories = require("../../models/category.model");
 const systemConfig = require("../../config/system");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
+const paginationHelper = require("../../helpers/pagination");
+const sortOptions = require("../../helpers/sort");
 
 module.exports.index = async (req, res) => {
-  const filterStatus = filterStatusHelper(req.query);
-  const objectSearch = searchHelper(req.query);
-  const find = {
-    deleted: false,
-    ...(req.query.status && { status: req.query.status }),
-    ...(objectSearch.regex && { title: objectSearch.regex }),
-  };
-  const categories = await Categories.find(find);
-  res.render("admin/pages/categories/index.pug", {
-    pageTitle: "Danh sách danh mục",
-    categories,
-    filterStatus,
-  });
+  try {
+    const filterStatus = filterStatusHelper(req.query);
+    const objectSearch = searchHelper(req.query);
+    const find = {
+      deleted: false,
+      ...(req.query.status && { status: req.query.status }),
+      ...(objectSearch.regex && { title: objectSearch.regex }),
+    };
+    // pagination
+    const totalRecord = await Categories.countDocuments(find);
+    let objectPagination = paginationHelper(
+      {
+        currentPage: 1,
+        limitItem: 5,
+      },
+      req.query,
+      totalRecord
+    );
+    //end pagination
+
+    // sort
+    const sort = sortOptions(req);
+    // end sort
+
+    const categories = await Categories.find(find)
+      .limit(objectPagination.limitItem)
+      .skip(objectPagination.skip)
+      .sort(sort);
+    res.render("admin/pages/categories/index.pug", {
+      pageTitle: "Danh sách danh mục",
+      categories,
+      filterStatus,
+      keyword: objectSearch.keyword,
+      pagination: objectPagination,
+    });
+  } catch (error) {
+    req.flash("error", "Không thể truy cập!");
+    console.log("error: ", error);
+    res.redirect(`${systemConfig.prefixAdmin}/dashboard`);
+  }
 };
 
 module.exports.createRecord = async (req, res) => {

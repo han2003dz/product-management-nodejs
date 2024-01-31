@@ -1,7 +1,7 @@
-mixin sort-category()
-  .select-sort(sort)
+mixin sortCategory()
+  .select-sort.d-flex(sort)
     select(
-      class="form-control form-select"
+      class="form-control form-select form-select-sm"
       name="sort"
       sort-select
     )
@@ -10,6 +10,6 @@ mixin sort-category()
       option(value="title-asc") Tiêu đề từ A-Z
       option(value="title-desc") Tiêu đề từ Z-A  
     button(
-        class="btn btn-danger mt-2"
-        sort-clear
-      ) Clear
+      class="btn btn-secondary btn-sm"
+      sort-clear
+    ) Clear

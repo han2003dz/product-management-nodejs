@@ -3,7 +3,7 @@ include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/trash.pug
-include ../../mixins/sortProduct.pug
+include ../../mixins/sortCategory.pug
 include ../../mixins/changeMulti.pug
 block main
   h1 
@@ -27,8 +27,8 @@ block main
               href=`${prefixAdmin}/categories/create`
             ) 
               button(class="btn btn-sm btn-outline-success") + Thêm mới
-          //- .col-3
-          //-   +sortProduct()
+          .col-3
+            +sortCategory()
           .col-3
             +search(keyword)
         .row.mt-2
@@ -57,8 +57,8 @@ block main
                       name="check-item"
                       value=item.id
                     )
-                  td(class="text-center") #{index + 1}
-                  //- td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
+                  //- td(class="text-center") #{index + 1}
+                  td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
                   td(class="text-center")
                     img(
                       class="img-categories"
@@ -97,7 +97,7 @@ block main
         p.text-center Chưa có sản phẩm nào!
     -var link = `categories`;
     .d-flex.align-items-center.justify-content-between
-      //- +pagination(pagination)
+      +pagination(pagination)
       +trash(link)
 
   form(
