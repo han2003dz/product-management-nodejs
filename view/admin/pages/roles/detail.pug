@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  .col-7
+    h1 Xem chi tiết quyền #{role.title}
+    .row
+      .form-group.mb-2
+        label(for="title" class="form-label") Tên quyền: #{role.title}
+    
+    .row
+      .col-md-6
+        if (role.status)
+          div(class="mb-3")
+            span Trạng thái:
+            if (role.status === "active")
+              span(class="text-success ms-1 fw-bolder") Hoạt động
+            else
+              span(class="text-danger ms-1 fw-bolder") Dừng hoạt động
+    .row
+      .form-group.mb-2
+        label(for="desc" class="form-label") Mô tả
+        textarea.form-control.textarea-mce(
+          id="desc"
+          name="description"
+          rows="4"
+        ) #{role.description}
+    .row
+      .form-group
+        a(
+          href=`${prefixAdmin}/roles/edit/${role.id}`
+          class="btn btn-primary"
+        ) Chỉnh sửa
