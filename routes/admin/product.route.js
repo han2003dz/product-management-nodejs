@@ -6,6 +6,8 @@ const upload = multer();
 const uploadCloud = require("../../middlewares/admin/uploadCloudinary.middleware");
 
 const controller = require("../../controllers/admin/products.controller");
+const { validationResult } = require("express-validator");
+const { createPost } = require("../../validates/admin/product.validate");
 
 router.get("/", controller.index);
 
@@ -19,6 +21,7 @@ router.patch(
   "/edit/:id",
   upload.single("thumbnail"),
   uploadCloud.upload,
+
   controller.editRecordPatch
 );
 
@@ -27,6 +30,17 @@ router.post(
   "/create",
   upload.single("thumbnail"),
   uploadCloud.upload,
+  createPost,
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // req.flash("errors", errors.array());
+      console.log(errors.errors);
+      res.render("admin/pages/products/create", { errors: errors });
+    } else {
+      next();
+    }
+  },
   controller.createRecordPost
 );
 

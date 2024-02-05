@@ -209,6 +209,7 @@ module.exports.createRecord = async (req, res) => {
     res.render("admin/pages/products/create.pug", {
       pageTitle: "Thêm sản phẩm",
       categories,
+      errors: "",
     });
   } catch (error) {
     res.flash("error", "Bạn không có quyền tạo sản phẩm mới!");

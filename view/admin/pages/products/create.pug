@@ -14,13 +14,15 @@ block main
       .col-4
         .row
           .form-group.mb-2 
-            label(for="title" class="form-label") Tiêu đề
+            label(for="title" class="form-label") Tên sản phẩm *
             input.form-control(
               type="text"
               id="title"
               name="title"
-              required
             )
+            //- if errors
+            //-   span(class="text-danger") #{errors.errors[0].msg}
+
         .row
           div(class="form-group my-2")
             label(for="product_category_id" class="form-label") Danh mục
@@ -52,7 +54,7 @@ block main
         .row
           .col-6
             div(class="form-group mb-2")
-              label(for="price" class="form-label") Giá gốc
+              label(for="price" class="form-label") Giá gốc *
               input(
                 type="number"
                 class="form-control"
