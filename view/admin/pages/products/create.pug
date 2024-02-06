@@ -24,16 +24,17 @@ block main
             //-   span(class="text-danger") #{errors.errors[0].msg}
 
         .row
-          div(class="form-group my-2")
-            label(for="product_category_id" class="form-label") Danh mục
-            select(
-              name="product_category_id"
-              id="product_category_id"
-              class="form-control form-select"
-            )
-              option(value="") -- Chọn danh mục --
-              if(categories)
-                +select-tree(categories)
+          if categories
+            div(class="form-group my-2")
+              label(for="product_category_id" class="form-label") Danh mục
+              select(
+                name="product_category_id"
+                id="product_category_id"
+                class="form-control form-select"
+              )
+                option(value="") -- Chọn danh mục --
+                if(categories)
+                  +select-tree(categories)
         .row
           .form-group.mb-2(upload-image)
             label(for="thumbnail" class="form-label") Ảnh
