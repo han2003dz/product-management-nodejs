@@ -1,0 +1,25 @@
+mixin status()
+  .row.my-2
+    .col-3
+      span Trạng thái *:
+    .col-4
+      .form-group.form-check.form-check-inline.mb-2
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusActive"
+          name="status"
+          value="active"
+          checked
+        )
+        label(for="statusActive" class="form-check-label") Hoạt động
+    .col-5
+      .form-group.form-check.form-check-inline.mb-2
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusInActive"
+          name="status"
+          value="inactive"
+        )
+        label(for="statusInActive" class="form-check-label") Dừng hoạt động 
