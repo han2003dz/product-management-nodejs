@@ -2,13 +2,36 @@ const md5 = require("md5");
 const Account = require("../../models/account.model");
 const Role = require("../../models/role.model");
 const systemConfig = require("../../config/system");
+const filterStatusHelper = require("../../helpers/filterStatus");
+const searchHelper = require("../../helpers/search");
+const paginationHelper = require("../../helpers/pagination");
+const sortOptions = require("../../helpers/sort");
 
 module.exports.index = async (req, res) => {
   try {
-    let find = {
+    const filterStatus = filterStatusHelper(req.query);
+    const objectSearch = searchHelper(req.query);
+    const find = {
       deleted: false,
+      ...(req.query.status && { status: req.query.status }),
+      ...(objectSearch.regex && { title: objectSearch.regex }),
     };
-    const accounts = await Account.find(find).select("-password -token");
+    const totalRecord = await Account.countDocuments(find);
+    let objectPagination = paginationHelper(
+      {
+        currentPage: 1,
+        limitItem: 5,
+      },
+      req.query,
+      totalRecord
+    );
+    const sort = sortOptions(req);
+
+    const accounts = await Account.find(find)
+      .select("-password -token")
+      .limit(objectPagination.limitItem)
+      .skip(objectPagination.skip)
+      .sort(sort);
     for (const account of accounts) {
       const role = await Role.findOne({
         _id: account.role_id,
@@ -19,6 +42,9 @@ module.exports.index = async (req, res) => {
     res.render("admin/pages/accounts/index.pug", {
       pageTitle: "Quản lý tài khoản",
       accounts,
+      filterStatus,
+      keyword: objectSearch.keyword,
+      pagination: objectPagination,
     });
   } catch (error) {
     console.log(error);

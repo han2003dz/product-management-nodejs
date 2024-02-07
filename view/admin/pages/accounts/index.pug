@@ -21,7 +21,7 @@ block main
       .card-body.p-0
         .row
           .col-6
-            //- +filter(filterStatus)
+            +filter(filterStatus)
             a(
               href=`${prefixAdmin}/accounts/create`
             ) 
@@ -43,6 +43,7 @@ block main
                 th(class="text-center") STT
                 th(class="text-center") Hình ảnh
                 th Tên 
+                th Quyền
                 th SĐT
                 th(class="text-center") Trạng thái
                 th Hành động
@@ -57,8 +58,7 @@ block main
                       name="check-item"
                       value=item.id
                     )
-                  td(class="text-center") #{index + 1}
-                  //- td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
+                  td(class="text-center") #{pagination.limitItem*(pagination.currentPage - 1) + (index+1)}
                   td(class="text-center")
                     img(
                       class="img-categories"
@@ -68,6 +68,7 @@ block main
                       height="30px"
                     )
                   td #{item.fullName}
+                  td #{item.role.title}
                   td #{item.phone}
                   td(class="text-center")
                     a(href="#" 
@@ -98,7 +99,7 @@ block main
         p.text-center Chưa có tài khoản nào!
     -var link = `accounts`;
     .d-flex.align-items-center.justify-content-between
-      //- +pagination(pagination)
+      +pagination(pagination)
       +trash(link)
 
   form(
