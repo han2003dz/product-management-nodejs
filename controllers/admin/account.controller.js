@@ -131,3 +131,25 @@ module.exports.editPatch = async (req, res) => {
     res.redirect("back");
   }
 };
+
+module.exports.deleteAccount = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Account.updateOne(
+      {
+        _id: id,
+      },
+      {
+        deleted: true,
+      },
+      {
+        deletedAt: new Date(),
+      }
+    );
+    req.flash("success", "Đã xóa thành công sản phẩm");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại");
+  } finally {
+    res.redirect("back");
+  }
+};
