@@ -76,8 +76,8 @@ module.exports.createPost = async (req, res) => {
       req.body.password = md5(req.body.password);
       const account = new Account(req.body);
       await account.save();
-      res.redirect(`${systemConfig.prefixAdmin}/accounts`);
       req.flash("success", "Tạo thành công tài khoản mới");
+      res.redirect(`${systemConfig.prefixAdmin}/accounts`);
     }
   } catch (error) {
     req.flash("error", "Chưa tạo được tài khoản mới");
