@@ -153,3 +153,21 @@ module.exports.deleteAccount = async (req, res) => {
     res.redirect("back");
   }
 };
+
+module.exports.detail = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const account = await Account.findOne({
+      _id: id,
+      deleted: false,
+    });
+    const roles = await Role.find({ deleted: false });
+    res.render("admin/pages/accounts/detail.pug", {
+      pageTitle: account.fullName,
+      account,
+      roles,
+    });
+  } catch (error) {
+    console.log("error detail account: ", error);
+  }
+};
