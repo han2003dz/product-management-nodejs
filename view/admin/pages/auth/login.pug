@@ -6,46 +6,50 @@ block main
         .featured-image
           img(src="/uploads/login.png" class="img-fluid d-block h-100")
       .col-md-5
-        .row.align-items-center
-          p.mt-5.text-primary.text-center.fs-1 Đăng Nhập
-        .row
-          div(class="form-group")
-            label(for="email" class="form-label") Email
-            .input__box.d-flex.align-items-center
-              i(class='bx bx-user text-dark')
-              input(
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Nhập email..."
-                required
-              )
-        .row
-          div(class="form-group mt-2 mb-2")
-            label(for="password" class="form-label") Mật khẩu
-            .input__box.d-flex.align-items-center
-              i(class='bx bx-lock-alt text-dark')
-              input(
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Nhập mật khẩu..."
-                required
-              )
-              i(class="bi bi-eye-fill text-dark eye-pass")
-        .row
-          a(href="") Quên mật khẩu?
-        .row
-          div(class="form-group mt-2 d-flex justify-content-center")
-            button(
-              type="submit"
-              class="btn btn-primary btn-block w-100"
-            ) Đăng nhập
-        .row
-          div(class="form-group mt-2 d-flex justify-content-center")
-            span Bạn chưa có tài khoản? 
-              a(href="") Đăng ký
+        form(
+          action=`${prefixAdmin}/auth/login`
+          method="POST"
+        )
+          .row.align-items-center
+            p.mt-5.text-primary.text-center.fs-1 Đăng Nhập
+          .row
+            div(class="form-group")
+              label(for="email" class="form-label") Email
+              .input__box.d-flex.align-items-center
+                i(class='bx bx-user text-dark')
+                input(
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Nhập email..."
+                  required
+                )
+          .row
+            div(class="form-group mt-2 mb-2")
+              label(for="password" class="form-label") Mật khẩu
+              .input__box.d-flex.align-items-center
+                i(class='bx bx-lock-alt text-dark')
+                input(
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Nhập mật khẩu..."
+                  required
+                )
+                i(class="bi bi-eye-fill text-dark eye-pass")
+          .row
+            a(href="") Quên mật khẩu?
+          .row
+            div(class="form-group mt-2 d-flex justify-content-center")
+              button(
+                type="submit"
+                class="btn btn-primary btn-block w-100"
+              ) Đăng nhập
+          .row
+            div(class="form-group mt-2 d-flex justify-content-center")
+              span Bạn chưa có tài khoản? 
+                a(href="") Đăng ký
 
 
