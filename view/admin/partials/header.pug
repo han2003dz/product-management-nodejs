@@ -7,8 +7,22 @@ header.header
 
       .col-6
       .col-4
-          div(class="text-right")
+        div(class="text-right d-flex justify-content-center align-items-center")
+          //- div(class="user mx-3")
+          //-   a(
+          //-     class="nav-link nav-profile d-flex align-items-center pe-0" 
+          //-     href=`${prefixAdmin}/my-account`
+          //-   )
+          //-     img(src=`${user.avatar}` alt=`${user.avatar}` class="rounded-circle avatar-user")
+          //-     span(class="d-md-block ps-2 profile--name") #{user.fullName}
+
+          div(class="logout")
             a(
-              href=`${prefixAdmin}/auth/login`
-              class="btn btn-success btn-sm"
-            ) Đăng nhập
+              href=`${prefixAdmin}/auth/logout`
+              class="btn btn-danger btn-sm"
+            ) Đăng xuất
+        //- div(class="text-right")
+        //-   a(
+        //-     href=`${prefixAdmin}/auth/login`
+        //-     class="btn btn-success btn-sm"
+        //-   ) Đăng nhập
