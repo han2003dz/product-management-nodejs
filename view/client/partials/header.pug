@@ -1,15 +1,45 @@
-header.header
-  .container
-    .row.align-items-center
-      .col-3
-        .inner-logo
-          a(href="/")
-            //- img(src="/images/logo.png", alt="Logo")
-
-      .col-9
-        .inner-menu
+header#header.header.fixed-top.d-flex.align-items-center
+  .container.d-flex.align-items-center.justify-content-between
+    a.logo.d-flex.align-items-center.me-auto.me-lg-0(href='/')
+      h1
+        | Yummy
+        span .
+    nav#navbar.navbar
+      ul
+        li
+          a(href='/') Trang chủ
+        li
+          a(href='/products') Sản phẩm
+        li.dropdown
+          a(href='#')
+            span Danh mục
+            i.bi.bi-chevron-down.dropdown-indicator
           ul
             li
-              a(href="/") Trang chủ
+              a(href='#') Drop Down 1
+            li.dropdown
+              a(href='#')
+                span Deep Drop Down
+                i.bi.bi-chevron-down.dropdown-indicator
+              ul
+                li
+                  a(href='#') Deep Drop Down 1
+                li
+                  a(href='#') Deep Drop Down 2
+                li
+                  a(href='#') Deep Drop Down 3
+                li
+                  a(href='#') Deep Drop Down 4
+                li
+                  a(href='#') Deep Drop Down 5
             li
-              a(href="/products") Sản phẩm
+              a(href='#') Drop Down 2
+            li
+              a(href='#') Drop Down 3
+          li
+            a(href='/news') Bài viết
+    // .navbar
+    a.btn-book-a-table(href='#book-a-table') Login
+    i.mobile-nav-toggle.mobile-nav-show.bi.bi-list
+    i.mobile-nav-toggle.mobile-nav-hide.d-none.bi.bi-x
+// End Header
