@@ -1,0 +1,268 @@
+mixin grid-layout()
+  // ======= Menu Section =======
+  section#menu.menu
+    .container(data-aos='fade-up')
+      .section-header
+        h2 Sản phẩm nổi bật
+        p
+          | Check Our 
+          span ByteBazaar Menu
+      ul.nav.nav-tabs.d-flex.justify-content-center(data-aos='fade-up' data-aos-delay='200')
+        li.nav-item
+          a.nav-link.active.show(data-bs-toggle='tab' data-bs-target='#menu-starters')
+            h4 Starters
+        // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-breakfast')
+            h4 Breakfast
+          // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-lunch')
+            h4 Lunch
+        // End tab nav item
+        li.nav-item
+          a.nav-link(data-bs-toggle='tab' data-bs-target='#menu-dinner')
+            h4 Dinner
+        // End tab nav item
+      .tab-content(data-aos='fade-up' data-aos-delay='300')
+        #menu-starters.tab-pane.fade.active.show
+          .tab-header.text-center
+            p Menu
+            h3 Starters
+          .row.gy-5
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-1.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-1.png' alt='')
+              h4 Magnam Tiste
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $5.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-2.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-2.png' alt='')
+              h4 Aut Luia
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $14.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-3.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-3.png' alt='')
+              h4 Est Eligendi
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $8.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-4.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-4.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-5.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-5.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-6.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-6.png' alt='')
+              h4 Laboriosam Direva
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $9.95
+            // Menu Item
+        // End Starter Menu Content
+        #menu-breakfast.tab-pane.fade
+          .tab-header.text-center
+            p Menu
+            h3 Breakfast
+          .row.gy-5
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-1.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-1.png' alt='')
+              h4 Magnam Tiste
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $5.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-2.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-2.png' alt='')
+              h4 Aut Luia
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $14.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-3.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-3.png' alt='')
+              h4 Est Eligendi
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $8.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-4.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-4.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-5.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-5.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-6.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-6.png' alt='')
+              h4 Laboriosam Direva
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $9.95
+            // Menu Item
+        // End Breakfast Menu Content
+        #menu-lunch.tab-pane.fade
+          .tab-header.text-center
+            p Menu
+            h3 Lunch
+          .row.gy-5
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-1.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-1.png' alt='')
+              h4 Magnam Tiste
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $5.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-2.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-2.png' alt='')
+              h4 Aut Luia
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $14.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-3.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-3.png' alt='')
+              h4 Est Eligendi
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $8.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-4.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-4.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-5.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-5.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-6.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-6.png' alt='')
+              h4 Laboriosam Direva
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $9.95
+            // Menu Item
+        // End Lunch Menu Content
+        #menu-dinner.tab-pane.fade
+          .tab-header.text-center
+            p Menu
+            h3 Dinner
+          .row.gy-5
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-1.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-1.png' alt='')
+              h4 Magnam Tiste
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $5.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-2.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-2.png' alt='')
+              h4 Aut Luia
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $14.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-3.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-3.png' alt='')
+              h4 Est Eligendi
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $8.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-4.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-4.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-5.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-5.png' alt='')
+              h4 Eos Luibusdam
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $12.95
+            // Menu Item
+            .col-lg-4.menu-item
+              a.glightbox(href='assets/img/menu/menu-item-6.png')
+                img.menu-img.img-fluid(src='assets/img/menu/menu-item-6.png' alt='')
+              h4 Laboriosam Direva
+              p.ingredients
+                | Lorem, deren, trataro, filede, nerada
+              p.price
+                | $9.95
+            // Menu Item
+        // End Dinner Menu Content
+  // End Menu Section

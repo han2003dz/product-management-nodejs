@@ -1,45 +1,56 @@
+include ../mixins/sub-menu.pug
 header#header.header.fixed-top.d-flex.align-items-center
   .container.d-flex.align-items-center.justify-content-between
     a.logo.d-flex.align-items-center.me-auto.me-lg-0(href='/')
       h1
-        | Yummy
+        | ByteBazaar
         span .
     nav#navbar.navbar
       ul
         li
-          a(href='/') Trang chủ
-        li
-          a(href='/products') Sản phẩm
+          a(href='/') 
+            i(class="bi bi-house fs-6 me-2")
+            | Trang chủ
         li.dropdown
-          a(href='#')
+          a(href='/categories')
             span Danh mục
-            i.bi.bi-chevron-down.dropdown-indicator
+            i(class="bi bi-chevron-down dropdown-indicator")
           ul
             li
-              a(href='#') Drop Down 1
-            li.dropdown
-              a(href='#')
-                span Deep Drop Down
-                i.bi.bi-chevron-down.dropdown-indicator
-              ul
-                li
-                  a(href='#') Deep Drop Down 1
-                li
-                  a(href='#') Deep Drop Down 2
-                li
-                  a(href='#') Deep Drop Down 3
-                li
-                  a(href='#') Deep Drop Down 4
-                li
-                  a(href='#') Deep Drop Down 5
+              a(href='/products') Điện thoại
             li
-              a(href='#') Drop Down 2
+              a(href='#') Laptop
             li
-              a(href='#') Drop Down 3
-          li
-            a(href='/news') Bài viết
-    // .navbar
-    a.btn-book-a-table(href='#book-a-table') Login
+              a(href='#') Tai nghe
+        li
+          a(href='/news') Bài viết
+        li
+          a(href='/cart')
+            i(class="bi bi-cart2 fs-6 me-2")
+            | (0)
+    .header-item
+      form(
+        action="/search"
+        method="GET"
+      ) 
+        div(class="form-group d-flex mb-0 border border-light rounded-3 form-search")
+          input(
+            type="text"
+            placeholder="Tìm kiếm..."
+            class="form-control border-0"
+            name="keyword"
+            value=keyword
+          )
+          button(
+            type="submit"
+            class="btn btn-light rounded-0 search-box__btn"
+          ) 
+            i(class="bi bi-search")
+
+    nav#navbar.navbar
+      a(href="/user/register") Đăng ký 
+      a.text-light |
+      a(href="/user/login") Đăng nhập
     i.mobile-nav-toggle.mobile-nav-show.bi.bi-list
     i.mobile-nav-toggle.mobile-nav-hide.d-none.bi.bi-x
 // End Header

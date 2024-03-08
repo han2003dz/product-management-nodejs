@@ -90,6 +90,30 @@ block main
               )
         +status()
         .row
+          .col-2
+            span Nổi bật:
+          .col-3
+            div(class="form-group form-check form-check-inline")
+              input(
+                type="radio"
+                class="form-check-input"
+                id="featured1"
+                name="featured"
+                value="1"
+              )
+              label(for="featured1" class="form-check-label") Có
+          .col-4
+            div(class="form-group form-check form-check-inline")
+              input(
+                type="radio"
+                class="form-check-input"
+                id="featured0"
+                name="featured"
+                value="0"
+                checked
+              )
+              label(for="featured0" class="form-check-label") Không
+        .row
           .form-group.mb-2
             label(for="desc" class="form-label") Mô tả
             textarea.form-control.textarea-mce(

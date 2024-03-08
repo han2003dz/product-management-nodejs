@@ -86,9 +86,9 @@ block main
                 min="0"
               )
         .row
-          .col-3
+          .col-2
             span Trạng thái:
-          .col-4
+          .col-3
             .form-group.form-check.form-check-inline.mb-2
               input(
                 type="radio"
@@ -99,7 +99,7 @@ block main
                 checked=(product.status == "active" ? true : false)
               )
               label(for="statusActive" class="form-check-label") Hoạt động
-          .col-5
+          .col-4
             .form-group.form-check.form-check-inline.mb-2
               input(
                 type="radio"
@@ -111,6 +111,31 @@ block main
               )
               label(for="statusInActive" class="form-check-label") Dừng hoạt động 
         .row
+          .col-2
+            span Nổi bật:
+          .col-3
+            div(class="form-group form-check form-check-inline")
+              input(
+                type="radio"
+                class="form-check-input"
+                id="featured1"
+                name="featured"
+                value="1"
+                checked=(product.featured == "1" ? true : false)
+              )
+              label(for="featured1" class="form-check-label") Có
+          .col-4
+            div(class="form-group form-check form-check-inline")
+              input(
+                type="radio"
+                class="form-check-input"
+                id="featured0"
+                name="featured"
+                value="0"
+                checked=(product.featured == "0" ? true : false)
+              )
+              label(for="featured0" class="form-check-label") Không
+        .row
           .form-group.mb-2
             label(for="desc" class="form-label") Mô tả
             textarea.form-control.textarea-mce(
@@ -121,38 +146,6 @@ block main
             ) #{product.description}
         .row.w-25.m-1
           button.btn.btn-primary(type="submit") Cập nhật
-
-    //-   //- div(class="form-group")
-    //-   //-   label(for="product_category_id") Danh mục
-    //-   //-   select(
-    //-   //-     name="product_category_id"
-    //-   //-     id="product_category_id"
-    //-   //-     class="form-control form-select"
-    //-   //-   )
-    //-   //-     option(value="") -- Chọn danh mục --
-    //-   //-     if(category)
-    //-   //-       +select-tree(category, 1, product.product_category_id)
-      
-    //-   //- div(class="form-group form-check form-check-inline")
-    //-   //-   input(
-    //-   //-     type="radio"
-    //-   //-     class="form-check-input"
-    //-   //-     id="featured1"
-    //-   //-     name="featured"
-    //-   //-     value="1"
-    //-   //-     checked=(product.featured == "1" ? true : false)
-    //-   //-   )
-    //-   //-   label(for="featured1" class="form-check-label") Nổi bật
-    //-   //- div(class="form-group form-check form-check-inline")
-    //-   //-   input(
-    //-   //-     type="radio"
-    //-   //-     class="form-check-input"
-    //-   //-     id="featured0"
-    //-   //-     name="featured"
-    //-   //-     value="0"
-    //-   //-     checked=(product.featured == "0" ? true : false)
-    //-   //-   )
-    //-   //-   label(for="featured0" class="form-check-label") Không
       
       
       

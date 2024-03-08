@@ -1,0 +1,25 @@
+mixin product-item(item)
+  .col-lg-2.menu-item.mb-3.me-4.p-2
+    a(href=`products/detail/${item.slug}`)
+      img.menu-img.img-fluid.inner-image(
+        src=item.thumbnail
+        alt=item.title
+      )
+      .row.mt-3
+        .inner-title #{item.title}
+      .row
+        .inner-price-new #{item.priceNew}đ
+      .row
+        .inner-price-old #{item.price}đ
+      .inner-discount -#{item.discountPercentage}%
+      .row
+        .col-6
+          <i class="bi bi-star-fill star"></i>
+          <i class="bi bi-star-fill star"></i>
+          <i class="bi bi-star-fill star"></i>
+          <i class="bi bi-star-fill star"></i>
+          <i class="bi bi-star-fill star"></i>
+        .col-6
+          .inner-sold Đã bán: #{item.stock}
+
+    
